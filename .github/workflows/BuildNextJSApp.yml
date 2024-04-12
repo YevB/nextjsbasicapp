@@ -1,4 +1,4 @@
-name: Build NextJS App
+name: 'Build NextJS App'
 
 on:
   workflow_dispatch:
