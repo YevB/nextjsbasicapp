@@ -13,7 +13,7 @@ env:
   PROJECT_NAME: YevDemo
   AKS_RESOURCE_GROUP: aksDemoEU01
   AKS_CLUSTER_NAME: aksYevLab01
- 
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
       - name: Login to Azure CLI
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -32,13 +32,11 @@ jobs:
           driver: docker-container
           install: true
 
-      # - name: Cache Docker layers
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /tmp/.buildx-cache
-      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-buildx-
+      - name: Create a Buildx Instance
+        run: docker buildx create --use --name mybuilder
+
+      - name: Start Buildx
+        run: docker buildx inspect --bootstrap
 
       - name: Login to ACR
         uses: azure/docker-login@v1
@@ -63,13 +61,6 @@ jobs:
           kubectl set image deployment/myapp-deployment myapp=${{ secrets.ACR_LOGIN_SERVER }}/myapp:${{ github.sha }}
         env:
           KUBECONFIG: ${{ github.workspace }}/kubeconfig
-
-      # - name: Cleanup Docker build cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /tmp/.buildx-cache-new
-      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-buildx-
+  
  
  
