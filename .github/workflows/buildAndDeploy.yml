@@ -9,6 +9,9 @@
 
 name: 'Build and deploy to AKS'
 
+on:
+  workflow_dispatch:
+
 env:
   AZURE_CONTAINER_REGISTRY: "acrYevLab01" # set this to the name of your container registry
   PROJECT_NAME: "YevDemo"              # set this to your project's name
@@ -18,9 +21,6 @@ env:
   # If you bake using helm:
  # CHART_PATH: MY_HELM_FILE                   # set this to the path to your helm file
  # CHART_OVERRIDE_PATH: MY_OVERRIDE_FILES     # set this to an array of override file paths
-
-on:
-  workflow_dispatch:
 
 jobs:
   build:
