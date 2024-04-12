@@ -7,7 +7,7 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Build and deploy to AKS
+name: 'Build and deploy to AKS'
 
 env:
   AZURE_CONTAINER_REGISTRY: "acrYevLab01" # set this to the name of your container registry
