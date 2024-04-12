@@ -5,7 +5,7 @@ on:
 
 env:
   AZURE_CONTAINER_REGISTRY: acrYevLab01
-  PROJECT_NAME: YevDemo
+  PROJECT_NAME: yevdemo
   AKS_RESOURCE_GROUP: aksDemoEU01
   AKS_CLUSTER_NAME: aksYevLab01
 
