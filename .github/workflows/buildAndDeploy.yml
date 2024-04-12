@@ -27,10 +27,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          driver: docker-container
-          install: true
+        uses: docker/setup-buildx-action@v3
 
       - name: Create a Buildx Instance
         run: docker buildx create --use --name mybuilder
